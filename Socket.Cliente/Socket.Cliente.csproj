@@ -5,4 +5,7 @@
 		<FileUpgradeFlags>
 		</FileUpgradeFlags>
 	</PropertyGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Socket.Comun\Socket.Comun.csproj" />
+	</ItemGroup>
 </Project>
