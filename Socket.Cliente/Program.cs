@@ -134,6 +134,13 @@ namespace Calculator.Cliente
 
                     var resultado = Encoding.UTF8.GetString(bufferRec, 0, bytesRec1);
 
+                    //deserializarlo
+                    var obj = JsonSerializer.Deserialize<Resultado>(resultado);
+
+                    //mostrarlo por pantalla
+                    Console.WriteLine("");
+                    //Console.WriteLine("El resultado de {0} {1} y {2} es {3} ",obj.Operacion, obj.Operando1, obj.Operando2, obj.Resultados);
+                    Console.WriteLine(obj);
                     // Release the socket.
                     sender.Shutdown(SocketShutdown.Both);
                     sender.Close();

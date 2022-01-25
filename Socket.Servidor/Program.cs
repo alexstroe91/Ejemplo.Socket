@@ -11,6 +11,57 @@ namespace Calculator.Servidor
 {
     internal class Program
     {
+        public static Resultado calcularResultado(double Operando1, double Operando2, DatosOperacion obj)
+        {
+            double servidorOperando1 = 0;
+            double servidorOperando2 = 0;
+            double servidorResultado = 0;
+            TipoOperacion servidorOperando = TipoOperacion.Suma;
+
+            if (obj.Operacion == TipoOperacion.Suma)
+            {
+                servidorOperando1 = obj.Operando1;
+                servidorOperando2 = obj.Operando2;
+                servidorResultado = servidorOperando1 + servidorOperando2;
+                servidorOperando = obj.Operacion;
+            }
+            else if (obj.Operacion == TipoOperacion.resta)
+            {
+                servidorOperando1 = obj.Operando1;
+                servidorOperando2 = obj.Operando2;
+                servidorResultado = servidorOperando1 - servidorOperando2;
+                servidorOperando = obj.Operacion;
+
+            }
+            else if (obj.Operacion == TipoOperacion.multiplicacion)
+            {
+                servidorOperando1 = obj.Operando1;
+                servidorOperando2 = obj.Operando2;
+                servidorResultado = servidorOperando1 * servidorOperando2;
+                servidorOperando = obj.Operacion;
+
+            }
+            else if (obj.Operacion == TipoOperacion.division)
+            {
+                servidorOperando1 = obj.Operando1;
+                servidorOperando2 = obj.Operando2;
+                servidorResultado = servidorOperando1 / servidorOperando2;
+                servidorOperando = obj.Operacion;
+
+            }
+
+            Resultado resultadoServidor = new Resultado
+            {
+                Operando1 = servidorOperando1,
+                Operando2 = servidorOperando2,
+                Resultados = servidorResultado,
+                Operacion = servidorOperando
+            };
+
+            return resultadoServidor;
+
+        }
+
         static void Main(string[] args)
         {
 
@@ -62,12 +113,16 @@ namespace Calculator.Servidor
                         var respuesta = "Ok: " + mensaje;
                         var obj = JsonSerializer.Deserialize<DatosOperacion>(mensaje);
 
-                        Console.WriteLine("{0} -> {1}", mensaje, respuesta);
+                        //guardo en la variable, el objeto con el resultado
+                        Resultado resultadoServidor = calcularResultado(obj.Operando1, obj.Operando2, obj);
+
+                        // serializa el objeto
+                        string jsonString = JsonSerializer.Serialize(resultadoServidor);
 
                         //lo que hace es coger el texto y volver a meterlo en binario
-                        var cacheRespuesta = Encoding.UTF8.GetBytes(respuesta);
+                        var cacheRespuesta = Encoding.UTF8.GetBytes(jsonString);
                         
-                        //devuelve el mensaje en binario
+                        //envia de vuelta el mensaje en binario
                         handler.Send(cacheRespuesta);
 
                         //duermes el hilo de ejecucion
