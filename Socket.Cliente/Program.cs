@@ -88,12 +88,11 @@ namespace Calculator.Cliente
                 // In this case, we get one IP address of localhost that is IP : 127.0.0.1
                 // If a host has multiple addresses, you will get a list of addresses
 
-                //IPHostEntry host = Dns.GetHostEntry("infc13_profe");
+                // IPHostEntry host = Dns.GetHostEntry("infc13_profe");
                 IPHostEntry host = Dns.GetHostEntry("localhost");
                 IPAddress ipAddress = host.AddressList[0];
 
-                //IPAddress ipAddress = IPAddress.Parse("ip destino");
-
+                // IPAddress ipAddress = IPAddress.Parse("ip destino");
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, 2800);
 
                 // Create a TCP/IP  socket.
@@ -115,7 +114,7 @@ namespace Calculator.Cliente
                     // serializa el objeto
                     string jsonString = JsonSerializer.Serialize(operacion);
 
-                    //convierte el objeto serializdo a un array de bytes
+                    // convierte el objeto serializdo a un array de bytes
                     var cacheEnvio = Encoding.UTF8.GetBytes(jsonString);
 
                     // Envia los datos
@@ -127,13 +126,13 @@ namespace Calculator.Cliente
 
                     var resultado = Encoding.UTF8.GetString(bufferRec, 0, bytesRec1);
 
-                    //deserializarlo
+                    // deserializarlo
                     var obj = JsonSerializer.Deserialize<Resultado>(resultado);
 
-                    //mostrarlo por pantalla
+                    // mostrarlo por pantalla
                     Console.WriteLine("");
-                    //Console.WriteLine("El resultado de {0} {1} y {2} es {3} ",obj.Operacion, obj.Operando1, obj.Operando2, obj.Resultados);
                     Console.WriteLine(obj);
+
                     // Release the socket.
                     sender.Shutdown(SocketShutdown.Both);
                     sender.Close();
