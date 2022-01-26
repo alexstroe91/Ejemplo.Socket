@@ -58,11 +58,13 @@ namespace Calculator.Cliente
         {
             Console.WriteLine("Calculadora CLIENTE / SERVIDOR C#\r");
             Console.WriteLine("------------------------\n");
-
+            
+            // declaro variables con las que voy a trabajar
             double operando1 = 0;
             double operando2 = 0;
             String operador;
 
+            // preguntamos los datos
             Console.WriteLine("Intoruce la operacion que quieres realizar(S-suma, R-resta, M-multiplicacion, D-division");
             operador = Console.ReadLine();
 
@@ -71,6 +73,7 @@ namespace Calculator.Cliente
             Console.WriteLine("Intoruce el segundo OPERADOR:");
             operando2 = double.Parse(Console.ReadLine());
 
+            // creamos el objeto con los operandos y la operacion
             DatosOperacion operacion = recogerDatos(operando1, operando2, operador);
             
             var resultado = EnviaMenaje(operacion);
