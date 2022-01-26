@@ -71,7 +71,7 @@ namespace Calculator.Cliente
             Console.WriteLine("Intoruce el segundo OPERADOR:");
             operando2 = double.Parse(Console.ReadLine());
 
-            DatoOperacion operacion = recogerDatos(operando1, operando2, operador);
+            DatosOperacion operacion = recogerDatos(operando1, operando2, operador);
             
             var resultado = EnviaMenaje(operacion);
 
