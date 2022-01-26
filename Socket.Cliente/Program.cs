@@ -12,6 +12,48 @@ namespace Calculator.Cliente
 {
     internal class Program
     {
+
+        public static DatosOperacion recogerDatos(double operando1, double operando2, string operador)
+        {
+            DatosOperacion operacion = null;
+
+            if (operador == "s")
+            {
+                operacion = new DatosOperacion
+                {
+                    Operando1 = operando1,
+                    Operando2 = operando2,
+                    Operacion = TipoOperacion.Suma
+                };
+            }else if (operador == "r")
+            {
+                operacion = new DatosOperacion
+                {
+                    Operando1 = operando1,
+                    Operando2 = operando2,
+                    Operacion = TipoOperacion.resta
+                };
+            }else if (operador == "m")
+            {
+                operacion = new DatosOperacion
+                {
+                    Operando1 = operando1,
+                    Operando2 = operando2,
+                    Operacion = TipoOperacion.multiplicacion
+                };
+            }else if (operador == "d")
+            {
+                operacion = new DatosOperacion
+                {
+                    Operando1 = operando1,
+                    Operando2 = operando2,
+                    Operacion = TipoOperacion.division
+                };
+            }
+
+            return operacion;
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Calculadora CLIENTE / SERVIDOR C#\r");
@@ -29,58 +71,9 @@ namespace Calculator.Cliente
             Console.WriteLine("Intoruce el segundo OPERADOR:");
             operando2 = double.Parse(Console.ReadLine());
 
-            if (operador == "s")
-            {
-                DatosOperacion operacion = new DatosOperacion
-                {
-                    Operando1 = operando1,
-                    Operando2 = operando2,
-                    Operacion = TipoOperacion.Suma
-                };
-                var resultado = EnviaMenaje(operacion);
-            }
-            if (operador == "r")
-            {
-                DatosOperacion operacion = new DatosOperacion
-                {
-                    Operando1 = operando1,
-                    Operando2 = operando2,
-                    Operacion = TipoOperacion.resta
-                };
-                var resultado = EnviaMenaje(operacion);
-            }
-            if (operador == "m")
-            {
-                DatosOperacion operacion = new DatosOperacion
-                {
-                    Operando1 = operando1,
-                    Operando2 = operando2,
-                    Operacion = TipoOperacion.multiplicacion
-                };
-                var resultado = EnviaMenaje(operacion);
-            }
-            if (operador == "d")
-            {
-                DatosOperacion operacion = new DatosOperacion
-                {
-                    Operando1 = operando1,
-                    Operando2 = operando2,
-                    Operacion = TipoOperacion.division
-                };
-                var resultado = EnviaMenaje(operacion);
-            }
-
-            /*
-            while (true)
-            {
-                Console.WriteLine("Mensaje:");
-                string mensaje = Console.ReadLine();
-
-                var resultado = EnviaMenaje(mensaje);
-
-                Console.WriteLine(resultado);
-            }
-            */
+            DatoOperacion operacion = recogerDatos(operando1, operando2, operador);
+            
+            var resultado = EnviaMenaje(operacion);
 
             Console.Write("Press any key to close the Calculator console app...");
             Console.ReadKey();
