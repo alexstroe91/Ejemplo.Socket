@@ -13,7 +13,7 @@ namespace Calculator.Cliente
     internal class Program
     {
 
-        public static DatosOperacion RecogerDatos(double operando1, double operando2, string operador)
+        public static DatosOperacion TratarDatos(double operando1, double operando2, string operador)
         {
             DatosOperacion operacion = null;
 
@@ -157,7 +157,7 @@ namespace Calculator.Cliente
             operando2 = double.Parse(Console.ReadLine());
 
             // creamos el objeto con los operandos y la operacion
-            DatosOperacion operacion = RecogerDatos(operando1, operando2, operador);
+            DatosOperacion operacion = TratarDatos(operando1, operando2, operador);
             
             var resultado = EnviaMenaje(operacion);
 
