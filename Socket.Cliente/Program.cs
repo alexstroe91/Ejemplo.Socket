@@ -13,7 +13,7 @@ namespace Calculator.Cliente
     internal class Program
     {
 
-        public static DatosOperacion recogerDatos(double operando1, double operando2, string operador)
+        public static DatosOperacion RecogerDatos(double operando1, double operando2, string operador)
         {
             DatosOperacion operacion = null;
 
@@ -52,34 +52,6 @@ namespace Calculator.Cliente
             }
 
             return operacion;
-        }
-
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Calculadora CLIENTE / SERVIDOR C#\r");
-            Console.WriteLine("------------------------\n");
-            
-            // declaro variables con las que voy a trabajar
-            double operando1 = 0;
-            double operando2 = 0;
-            String operador;
-
-            // preguntamos los datos
-            Console.WriteLine("Intoruce la operacion que quieres realizar(S-suma, R-resta, M-multiplicacion, D-division");
-            operador = Console.ReadLine();
-
-            Console.WriteLine("Intoruce el primer OPERADOR:");
-            operando1 = double.Parse(Console.ReadLine());
-            Console.WriteLine("Intoruce el segundo OPERADOR:");
-            operando2 = double.Parse(Console.ReadLine());
-
-            // creamos el objeto con los operandos y la operacion
-            DatosOperacion operacion = recogerDatos(operando1, operando2, operador);
-            
-            var resultado = EnviaMenaje(operacion);
-
-            Console.Write("Press any key to close the Calculator console app...");
-            Console.ReadKey();
         }
 
         static string EnviaMenaje(DatosOperacion operacion)
@@ -164,5 +136,34 @@ namespace Calculator.Cliente
 
             return null;
         }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Calculadora CLIENTE / SERVIDOR C#\r");
+            Console.WriteLine("------------------------\n");
+            
+            // declaro variables con las que voy a trabajar
+            double operando1 = 0;
+            double operando2 = 0;
+            String operador;
+
+            // preguntamos los datos
+            Console.WriteLine("Intoruce la operacion que quieres realizar(S-suma, R-resta, M-multiplicacion, D-division");
+            operador = Console.ReadLine();
+
+            Console.WriteLine("Intoruce el primer OPERADOR:");
+            operando1 = double.Parse(Console.ReadLine());
+            Console.WriteLine("Intoruce el segundo OPERADOR:");
+            operando2 = double.Parse(Console.ReadLine());
+
+            // creamos el objeto con los operandos y la operacion
+            DatosOperacion operacion = RecogerDatos(operando1, operando2, operador);
+            
+            var resultado = EnviaMenaje(operacion);
+
+            Console.Write("Press any key to close the Calculator console app...");
+            Console.ReadKey();
+        }
+
     }
 }
