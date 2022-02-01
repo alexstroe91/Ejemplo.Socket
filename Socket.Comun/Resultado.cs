@@ -17,6 +17,7 @@ namespace Calculator.Comun
         {
             string operacionString = "";
 
+
             if (Operacion == TipoOperacion.Suma)
             {
                 operacionString = "sumar";
